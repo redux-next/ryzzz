@@ -111,13 +111,20 @@ const Cards = ({ message, sentAt, messageId, seen }: Props) => {
       </DialogContent>
     </Dialog>
   ) : (
-    <Card
-      className="hover:-translate-y-1 hover:shadow-md transition-all duration-300 min-h-[130px] bg-gradient-to-tl from-cyan-300 via-blue-500 to-purple-600 flex flex-col items-center justify-center cursor-pointer"
-      onClick={handleSeen}
-    >
-      <h2 className="logo p-1 md:text-5xl text-4xl text-white  ryzz ">Ryzz</h2>
-      <p className="text-zinc-100/70">Click to reveal</p>
-    </Card>
+    <div className="relative group">
+      <div className="absolute -top-1 -right-1 z-10">
+        <span className="flex h-6 w-12 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow-lg animate-bounce">
+          NEW!
+        </span>
+      </div>
+      <Card
+        className="hover:-translate-y-1 hover:shadow-md transition-all duration-300 min-h-[130px] bg-gradient-to-tl from-cyan-300 via-blue-500 to-purple-600 flex flex-col items-center justify-center cursor-pointer border-4 border-white/20"
+        onClick={handleSeen}
+      >
+        <h2 className="logo p-1 md:text-5xl text-4xl text-white  ryzz ">Ryzz</h2>
+        <p className="text-zinc-100/70">Click to reveal</p>
+      </Card>
+    </div>
   );
 };
 

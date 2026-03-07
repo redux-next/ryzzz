@@ -1,6 +1,9 @@
 import prisma from "@/lib/db/prisma";
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
+import Filter from "bad-words";
+
+const filter = new Filter();
 
 export async function POST(req: Request) {
   try {
@@ -9,9 +12,10 @@ export async function POST(req: Request) {
     const { content, userId } = body;
 
     if (userId) {
+      const cleanContent = filter.clean(content);
       const message = await prisma.message.create({
         data: {
-          content,
+          content: cleanContent,
           userId,
         },
       });
