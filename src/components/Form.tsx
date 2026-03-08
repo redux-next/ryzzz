@@ -21,8 +21,16 @@ const Form = ({ userId }: Props) => {
   });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const MAX_CHARS = 300;
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (message.length > MAX_CHARS) {
+      toast.error("Message is too long!", {
+        description: `Please keep it under ${MAX_CHARS} characters.`,
+      });
+      return;
+    }
     setLoading(true);
     reward();
     const content = message;
@@ -68,6 +76,7 @@ const Form = ({ userId }: Props) => {
         <Textarea
           placeholder="Show your Ryzz 🤪"
           value={message}
+          maxLength={MAX_CHARS}
           className="w-full rounded-b-2xl min-h-[120px] rounded-t-none  bg-zinc-200/50 text-slate-800 border-zinc-400/50 font-semibold text-base focus:ring-inset placeholder:text-zinc-200/85"
           onChange={(e) => setMessage(e.target.value)}
         />
@@ -77,13 +86,16 @@ const Form = ({ userId }: Props) => {
         >
           <Dices className="text-zinc-600" />
         </div>
+        <div className="absolute -bottom-6 right-1 text-xs font-medium text-muted-foreground">
+          {message.length} / {MAX_CHARS}
+        </div>
       </div>
 
       <Button
         type="submit"
-        className="mt-4 font-semibold text-lg md:text-xl"
+        className="mt-8 font-semibold text-lg md:text-xl"
         size={"lg"}
-        disabled={loading || isAnimating}
+        disabled={loading || isAnimating || message.length > MAX_CHARS}
       >
         {loading ? (
           <Loader className="animate-spin ease-in-out" />

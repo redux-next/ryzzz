@@ -38,3 +38,5 @@ next-env.d.ts
 .vscode/settings.json
 public/sw.js
 public/workbox-*.js
+# clerk configuration (can include secrets)
+/.clerk/
