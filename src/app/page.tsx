@@ -153,7 +153,7 @@ export default async function Home() {
 
       <footer className="border-t rounded-t-3xl">
         <div className="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-          © 2024 Ryzz. All rights reserved.
+          © 2026 Ryzz {Developed by Gyanam}. All rights reserved.
         </div>
       </footer>
     </div>
